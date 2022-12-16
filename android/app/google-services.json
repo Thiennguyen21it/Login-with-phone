@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "676662762080",
+    "project_id": "phoneauths-b15b5",
+    "storage_bucket": "phoneauths-b15b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676662762080:android:c9fa2f73d0fe4f09ab8105",
+        "android_client_info": {
+          "package_name": "com.example.phone_auths"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "676662762080-rqb9254d1oe7ksf5d07usmtb2gp9modn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcoZ4JMkF3sIkHGS4kxSkjv1SwiuKxCi0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "676662762080-rqb9254d1oe7ksf5d07usmtb2gp9modn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
