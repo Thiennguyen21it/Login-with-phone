@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:phone_auths/provider/auth_provider.dart';
 import 'package:phone_auths/screens/register_screen.dart';
 import 'package:phone_auths/widgets/custom_button.dart';
+import 'package:provider/provider.dart';
+
+import 'home_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -12,6 +16,8 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final app = Provider.of<AuthProvider>(context, listen: false);
+
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -51,12 +57,19 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   child: CustomButton(
                     text: "Get Started",
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const RegisterScreen(),
-                        ),
-                      );
+                      app.isSignIn == true //true , then fetch SF data
+                          ? Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const HomeScreen(),
+                              ),
+                            )
+                          : Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const RegisterScreen(),
+                              ),
+                            );
                     },
                   ),
                 )
