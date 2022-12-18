@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:phone_auths/Utils/util.dart';
 import 'package:phone_auths/screens/otp_screen.dart';
@@ -21,12 +20,14 @@ class AuthProvider extends ChangeNotifier {
     checkSignIn();
   }
 
+  //check user sign in or not
   void checkSignIn() async {
     final SharedPreferences sf = await SharedPreferences.getInstance();
     _isSignIn = sf.getBool("is_SignIn") ?? false;
     notifyListeners();
   }
 
+  //function sign in with phone number
   void signInWithPhone(BuildContext context, String phoneNumber) async {
     try {
       await _firebaseAuth.verifyPhoneNumber(
@@ -60,11 +61,13 @@ class AuthProvider extends ChangeNotifier {
   }) async {
     _isLoading = true;
     notifyListeners();
+
     try {
       PhoneAuthCredential creds = PhoneAuthProvider.credential(
           verificationId: verificationId, smsCode: userOtp);
-      User user = (await _firebaseAuth.signInWithCredential(creds)).user!;
+      User? user = (await _firebaseAuth.signInWithCredential(creds)).user!;
 
+      // ignore: unnecessary_null_comparison
       if (user != null) {
         //carry out logic
 
@@ -80,14 +83,17 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  //DATABSE OPERATIONS
-  Future<bool?> checkExistingUser() async {
+  // DATABASE OPERTAIONS
+  Future<bool> checkExistingUser() async {
     DocumentSnapshot snapshot =
         await _firebaseFirestore.collection("users").doc(_uid).get();
     if (snapshot.exists) {
-      print("User exist");
+      // ignore: avoid_print
+      print("USER EXISTS");
+      return true;
     } else {
-      print("New user");
+      // ignore: avoid_print
+      print("NEW USER");
       return false;
     }
   }

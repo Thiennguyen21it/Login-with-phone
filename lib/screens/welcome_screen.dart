@@ -57,7 +57,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   child: CustomButton(
                     text: "Get Started",
                     onPressed: () {
-                      app.isSignIn == true //true , then fetch SF data
+                      app.isSignIn == true //when true , then fetch SF data
                           ? Navigator.push(
                               context,
                               MaterialPageRoute(

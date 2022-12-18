@@ -79,7 +79,7 @@ class _OtpScreenState extends State<OtpScreen> {
                             width: 60,
                             height: 60,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(10),
                               border: Border.all(color: Colors.purple.shade200),
                             ),
                             textStyle: const TextStyle(
@@ -87,11 +87,14 @@ class _OtpScreenState extends State<OtpScreen> {
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          onSubmitted: (value) {
+                          onCompleted: (value) {
                             setState(() {
                               otpCode = value;
                             });
                           },
+                        ),
+                        const SizedBox(
+                          height: 20,
                         ),
                         SizedBox(
                           width: double.infinity,

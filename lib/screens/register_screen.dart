@@ -27,7 +27,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     phoneController.selection = TextSelection.fromPosition(
-        TextPosition(offset: phoneController.text.length));
+      TextPosition(offset: phoneController.text.length),
+    );
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -154,6 +155,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   void sendPhoneNumber() {
+    //+84 123456789
     final app = Provider.of<AuthProvider>(context, listen: false);
     String phoneNumber = phoneController.text.trim();
     app.signInWithPhone(context, "+${selectedCountry.phoneCode}$phoneNumber");
