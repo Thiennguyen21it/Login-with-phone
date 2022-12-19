@@ -55,21 +55,25 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   width: double.infinity,
                   height: 50,
                   child: CustomButton(
-                    text: "Get Started",
-                    onPressed: () {
-                      app.isSignIn == true //when true , then fetch SF data
-                          ? Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const HomeScreen(),
-                              ),
-                            )
-                          : Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const RegisterScreen(),
-                              ),
-                            );
+                    text: "Continue with Phone",
+                    onPressed: () async {
+                      if (app.isSignIn == true) {
+                        await app
+                            .getDataFromSF()
+                            .whenComplete(() => Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const HomeScreen(),
+                                  ),
+                                ));
+                      } else {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const RegisterScreen(),
+                          ),
+                        );
+                      }
                     },
                   ),
                 )

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:phone_auths/Utils/util.dart';
 import 'package:phone_auths/provider/auth_provider.dart';
+import 'package:phone_auths/screens/home_screen.dart';
 import 'package:phone_auths/screens/user_infor_screen.dart';
 import 'package:phone_auths/widgets/custom_button.dart';
 import 'package:pinput/pinput.dart';
@@ -153,6 +154,14 @@ class _OtpScreenState extends State<OtpScreen> {
                 if (value == true)
                   {
                     // exist user in our app
+                    app.getDataFromFireStore().then((value) => app
+                        .saveUserDataSF()
+                        .then((value) => app.setSignIn().then((value) =>
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const HomeScreen()),
+                                (route) => false))))
                   }
                 else
                   {
