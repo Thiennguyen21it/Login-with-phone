@@ -85,7 +85,6 @@ class AuthProvider extends ChangeNotifier {
       // ignore: unnecessary_null_comparison
       if (user != null) {
         //carry out logic
-
         _uid = user.uid;
         onSuccess();
       }
@@ -185,6 +184,7 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  //logout function
   Future userSignOut() async {
     SharedPreferences sf = await SharedPreferences.getInstance();
     await _firebaseAuth.signOut();

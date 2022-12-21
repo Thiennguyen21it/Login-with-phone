@@ -189,17 +189,18 @@ class _UserInforPageState extends State<UserInforPage> {
         uid: "");
     if (image != null) {
       app.saveUserDataToFirebase(
-          context: context,
-          userModel: userModel,
-          profilePic: image!,
-          onSuccess: () {
-            //once data is saved we need to store it
-            app.saveUserDataSF().then((value) => app.setSignIn().then((value) =>
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => const HomeScreen()),
-                    (route) => false)));
-          });
+        context: context,
+        userModel: userModel,
+        profilePic: image!,
+        onSuccess: () {
+          //once data is saved we need to store it
+          app.saveUserDataSF().then((value) => app.setSignIn().then((value) =>
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomeScreen()),
+                  (route) => false)));
+        },
+      );
     } else {
       showSnackBar(context, "Please upload your profile picture");
     }
